@@ -1,5 +1,7 @@
 # Eloquent JUnit: from Matchers to Builders
 
+Voir l'article sur [http://inagua.ch/2014/10/20/eloquent-junit-from-matchers-to-builders/](http://inagua.ch/2014/10/20/eloquent-junit-from-matchers-to-builders)
+
 * Sources
 * Contexte
 * The test: verbose
@@ -7,11 +9,10 @@
 * The Builder: eloquent
 * Améliorations
 * Conclusion
-
  
 ## Sources
 
-Ce projet maven contient les sources :
+Ce projet Java maven contient les sources :
 
 	matchers
 	 + src/main/java
