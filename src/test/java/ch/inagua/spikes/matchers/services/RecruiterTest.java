@@ -2,6 +2,7 @@ package ch.inagua.spikes.matchers.services;
 
 import org.junit.Test;
 
+import ch.inagua.spikes.matchers.matchers.IsColleagueMatcher;
 import ch.inagua.spikes.matchers.models.Colleague;
 import ch.inagua.spikes.matchers.services.Recruiter;
 import static org.junit.Assert.assertEquals;
@@ -26,7 +27,7 @@ public class RecruiterTest {
 	public void test_enroll_withMatcher() {
 		final Colleague colleague = new Recruiter().enroll("Jacques");
 
-		assertThat(colleague, isColleagueWith("Jacques", 0, null, null, "100000"));
+		assertThat(colleague, IsColleagueMatcher.isColleagueWith("Jacques", 0, null, null, "100000"));
 	}
 
 	@Test
