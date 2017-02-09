@@ -1,14 +1,13 @@
 package ch.inagua.spikes.matchers.services;
 
-import org.junit.Test;
-
 import ch.inagua.spikes.matchers.matchers.IsColleagueMatcher;
 import ch.inagua.spikes.matchers.models.Colleague;
-import ch.inagua.spikes.matchers.services.Recruiter;
+import org.junit.Test;
+
+import static ch.inagua.spikes.matchers.matchers.IsColleagueBuilderMatcher.isColleagueWith;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNull;
-import static org.junit.Assert.assertThat;
-import static ch.inagua.spikes.matchers.matchers.IsColleagueBuilderMatcher.isColleagueWith;
 
 public class RecruiterTest {
 

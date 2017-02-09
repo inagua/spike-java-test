@@ -6,7 +6,8 @@
 .LSOverride
 
 # Icon must end with two \r
-Icon
+Icon
+
 
 # Thumbnails
 ._*
@@ -48,6 +49,8 @@ release.properties
 
 
 ### Eclipse ###
+RemoteSystemsTempFiles
+.project
 *.pydevproject
 .metadata
 .gradle
