@@ -1,5 +1,8 @@
 package ch.inagua.test.matchers;
 
+import org.hamcrest.Matcher;
+import org.hamcrest.Matchers;
+
 import java.util.Collection;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -43,6 +46,20 @@ public class CollectionMatcher {
     public static <T> T single(Collection<T> collection) {
         assertThat(collection, hasSize(1));
         return collection.iterator().next();
+    }
+
+    /**
+     * Creates a matcher for {@link java.util.Collection}s that combines both 'hasSize(items.lenght)' and 'hasItems(items)' matchers.
+     * The asserted collection should have exactly the same items count and containing the items without taking care of order.
+     *
+     * For example:
+     * <pre>assertThat(Arrays.asList("foo", "bar"), hasExactlyItems("bar", "foo"))</pre>
+     *
+     * @param items
+     *     the items to compare against the items provided by the examined {@link Iterable}
+     */
+    public static <T> Matcher<Collection<T>> hasExactlyItems(T... items) {
+        return Matchers.<Collection<T>>allOf(Matchers.<T>hasSize(items.length), Matchers.<T>hasItems(items));
     }
 
 }

@@ -4,6 +4,7 @@ import ch.inagua.test.matchers.CollectionMatcher;
 import org.junit.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static ch.inagua.test.matchers.CollectionMatcher.single;
@@ -36,5 +37,16 @@ public class CollectionMatcherTest {
     public void test_single_shouldFailWithEmptyCollection() throws Exception {
         final List<Long> ids = new ArrayList<Long>();
         CollectionMatcher.single(ids);
+    }
+
+    @Test
+    public void test_hasExactlyItems_shouldSucceedWithTheRightItems() {
+        assertThat(Arrays.asList("a", "b", "c"), CollectionMatcher.hasExactlyItems("b", "c", "a"));
+        assertThat(Arrays.asList(11L, 22L, 33L), CollectionMatcher.hasExactlyItems(11L, 22L, 33L));
+    }
+
+    @Test(expected = AssertionError.class)
+    public void test_hasExactlyItems_shouldFailedWithMissingItems() {
+        assertThat(Arrays.asList("a", "b", "c"), CollectionMatcher.hasExactlyItems("a", "b"));
     }
 }
