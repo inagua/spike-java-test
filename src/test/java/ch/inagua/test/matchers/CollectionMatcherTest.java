@@ -1,6 +1,5 @@
 package ch.inagua.test.matchers;
 
-import ch.inagua.test.matchers.CollectionMatcher;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -12,6 +11,9 @@ import static java.util.Arrays.asList;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+/**
+ * Created by jacques@inagua.ch on 09.02.2017.
+ */
 public class CollectionMatcherTest {
 
     @Test
