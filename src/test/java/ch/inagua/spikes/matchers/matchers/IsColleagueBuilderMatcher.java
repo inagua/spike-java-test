@@ -11,22 +11,27 @@ import ch.inagua.spikes.matchers.models.Colleague;
 
 public class IsColleagueBuilderMatcher extends TypeSafeMatcher<Colleague> {
 
+	public static final boolean IgnoringNullProperties = true;
+
+	private final boolean ignoreNullProperties;
+
 	//
 	// MACTHER PART
 	//
 
 	/**
-	 * Constructor, private!... @see {@link #isColleagueWith()}
+	 * Constructor, private!... @see {@link #isColleagueWith(boolean)}
 	 */
-	private IsColleagueBuilderMatcher() {
+	private IsColleagueBuilderMatcher(boolean ignoreNullProperties) {
+		this.ignoreNullProperties = ignoreNullProperties;
 	}
 
 	/**
 	 * Static method to return an instance of the matcher
 	 */
 	@Factory
-	public static IsColleagueBuilderMatcher isColleagueWith() {
-		return new IsColleagueBuilderMatcher();
+	public static IsColleagueBuilderMatcher isColleagueWith(boolean ignoreNullProperties) {
+		return new IsColleagueBuilderMatcher(ignoreNullProperties);
 	}
 
 	/**
@@ -62,12 +67,16 @@ public class IsColleagueBuilderMatcher extends TypeSafeMatcher<Colleague> {
 	@Override
 	protected boolean matchesSafely(Colleague colleague) {
 		return true //
-				&& StringUtils.equals(name, colleague.getName())//
-				&& age == colleague.getAge()//
-				&& StringUtils.equals(service, colleague.getService())//
-				&& StringUtils.equals(currentProject, colleague.getCurrentProject())//
-				&& areBigDecimalEquals(salary, colleague.getSalary())//
+				&& matchWithNull(name, StringUtils.equals(name, colleague.getName()))//
+				&& matchWithNull(age, age == colleague.getAge())//
+				&& matchWithNull(service, StringUtils.equals(service, colleague.getService()))//
+				&& matchWithNull(currentProject, StringUtils.equals(currentProject, colleague.getCurrentProject()))//
+				&& matchWithNull(salary, areBigDecimalEquals(salary, colleague.getSalary()))//
 		;
+	}
+
+	private boolean matchWithNull(Object property, boolean isEqual) {
+		return property == null && ignoreNullProperties || isEqual;
 	}
 
 	/**

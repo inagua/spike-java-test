@@ -4,6 +4,7 @@ import ch.inagua.spikes.matchers.matchers.IsColleagueMatcher;
 import ch.inagua.spikes.matchers.models.Colleague;
 import org.junit.Test;
 
+import static ch.inagua.spikes.matchers.matchers.IsColleagueBuilderMatcher.IgnoringNullProperties;
 import static ch.inagua.spikes.matchers.matchers.IsColleagueBuilderMatcher.isColleagueWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.assertEquals;
@@ -33,9 +34,16 @@ public class RecruiterTest {
 	public void test_enroll_withBuilderMatcher() {
 		final Colleague colleague = new Recruiter().enroll("Jacques");
 
-		assertThat(colleague, isColleagueWith()._name("Jacques")._salary("100000")._service(null)._currentProject(null));
-		assertThat(colleague, isColleagueWith()._name("Jacques")._salary("100000"));
-		assertThat(colleague, isColleagueWith()._name("Jacques")); // Fail!
+		assertThat(colleague, isColleagueWith(IgnoringNullProperties)._name("Jacques")._salary("100000")._service(null)._currentProject(null));
+		assertThat(colleague, isColleagueWith(IgnoringNullProperties)._name("Jacques")._salary("100000"));
+		assertThat(colleague, isColleagueWith(!IgnoringNullProperties)._name("Jacques")._salary("100000"));
+	}
+
+	@Test(expected = AssertionError.class)
+	public void test_enroll_withBuilderMatcherShouldFailIfDoNotIgnoreNullProperties() {
+		final Colleague colleague = new Recruiter().enroll("Jacques");
+
+		assertThat(colleague, isColleagueWith(!IgnoringNullProperties)._name("Jacques")); // Fail!
 	}
 
 }
