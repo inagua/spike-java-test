@@ -1,3 +1,51 @@
+# Infinitest
+
+- http://infinitest.github.io/doc/user_guide.html
+
+Infinitest est un outil qui permet jouer les tests unitaires en continue pendant le développement. Il se présente sous la 
+forme d'un plugin pour Eclipse ou IntelliJ.
+
+Il fait sens sur des projets avec des tests qui se jouent rapidement, comme c'est le cas pour `rest-finance` actuellement.
+
+Dans ce sens, le fichier `\infinitest.filters` à la racine du projet filtre les tests qui sont trop longs, et surtout ceux 
+qui nécessitent des accès en base de données car ils échouent fréquemment en raison des collisions occasionnées. 
+  
+Si vous décidez de ne pas utiliser cet outil, vous n'avez rien à faire : par défaut il n'est pas mis en oeuvre. Dans le cas contraire, vous devez:
+
+## Pour Eclipse
+
+Depuis Eclipse :
+
+* Help
+* Install New Software...
+* Add...
+    * Name : infinitest
+    * Location : http://infinitest.github.io
+
+Puis configurer :
+
+* Window
+* Préférences
+* Infinitest
+  * Continuously Test: cocher !
+
+## Pour IntelliJ:
+
+* Installer le plugin 
+* Activer la compilation automatique: 
+  * File 
+  * Settings... 
+  * Build... 
+  * Compiler 
+  * Build Project Automatically
+* Ajouter une facet: clic droit sur le projet, 
+  * File
+  * Open Module Settings 
+  * Facets, +, Infinitest facet: 
+  
+Un onglet avec le nom du projet précédé l'icon d'infinitest apparaitra alors en bas. 
+
+
 # Eloquent JUnit: from Matchers to Builders
 
 Voir l'article sur [http://inagua.ch/2014/10/20/eloquent-junit-from-matchers-to-builders/](http://inagua.ch/2014/10/20/eloquent-junit-from-matchers-to-builders)
